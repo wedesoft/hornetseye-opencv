@@ -28,7 +28,6 @@ module OpenCV
         Hornetseye::MultiArray( Hornetseye::COMPLEX( retval.typecode ),
                                 width, height ).new retval.memory
       when 3
-        # swap rgb!
         Hornetseye::MultiArray( Hornetseye::RGB( retval.typecode ),
                                 width, height ).new retval.memory
       else

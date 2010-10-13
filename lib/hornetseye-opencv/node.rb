@@ -21,7 +21,6 @@ module Hornetseye
 
     def to_cvmat
       if typecode < Composite
-        # swap RGB!
         Hornetseye::MultiArray( typecode.element_type,
                                 typecode.num_elements, *shape ).new( memory ).
           orig_to_cvmat

@@ -13,7 +13,15 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-require 'hornetseye-opencv/cvmat'
-require 'hornetseye-opencv/iplimage'
-require 'hornetseye-opencv/node'
+module OpenCV
+
+  class IplImage
+
+    def to_multiarray
+      to_CvMat.to_multiarray
+    end
+
+  end
+
+end
 
