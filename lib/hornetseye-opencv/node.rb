@@ -20,15 +20,16 @@ module Hornetseye
     alias_method :orig_to_cvmat, :to_cvmat
 
     def to_cvmat
+      data = memorise
       if typecode < Composite
-        Hornetseye::MultiArray( typecode.element_type,
-                                typecode.num_elements, *shape ).new( memory ).
-          orig_to_cvmat
+        Hornetseye::MultiArray( data.typecode.element_type,
+                                data.typecode.num_elements, *data.shape ).
+          new( data.memory ).orig_to_cvmat
       elsif dimension == 2
-        Hornetseye::MultiArray( typecode, 1, *shape ).new( memory ).
+        Hornetseye::MultiArray( data.typecode, 1, *data.shape ).new( data.memory ).
           orig_to_cvmat
       else
-        orig_to_cvmat
+        data.orig_to_cvmat
       end
     end
 
