@@ -83,11 +83,9 @@ VALUE CvMatExt::wrapToMultiArray( VALUE rbSelf )
     VALUE rbDest = rb_funcall( cMalloc, rb_intern( "new" ), 1, INT2NUM( size ) );
     char *dest; Data_Get_Struct( rbDest, char, dest );
     copy( cvMat->data.ptr, cvMat->data.ptr + size, dest );
-    VALUE rbMultiArray = rb_funcall( mHornetseye, rb_intern( "MultiArray" ), 4,
-                                     rbTypecode, INT2NUM( channels ),
-                                     INT2NUM( width ), INT2NUM( height ) );
-    VALUE rbImport = rb_funcall( rbMultiArray, rb_intern( "new" ), 1, rbDest );
-    rbRetVal = rbImport;
+    rbRetVal = rb_funcall(rb_const_get(mHornetseye, rb_intern("MultiArray")),
+      rb_intern("import"), 5, rbTypecode, rbDest,
+      INT2NUM(channels), INT2NUM(width), INT2NUM(height));
   } catch( std::exception &e ) {
     rb_raise( rb_eRuntimeError, "%s", e.what() );
   };

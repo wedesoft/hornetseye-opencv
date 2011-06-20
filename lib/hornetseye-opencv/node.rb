@@ -22,12 +22,11 @@ module Hornetseye
     def to_cvmat
       data = memorise
       if typecode < Composite
-        Hornetseye::MultiArray( data.typecode.element_type,
-                                data.typecode.num_elements, *data.shape ).
-          new( data.memory ).orig_to_cvmat
+        MultiArray.import(data.typecode.basetype, data.memory,
+                          data.typecode.num_elements, *data.shape).orig_to_cvmat
       elsif dimension == 2
-        Hornetseye::MultiArray( data.typecode, 1, *data.shape ).new( data.memory ).
-          orig_to_cvmat
+        MultiArray.import(data.typecode.basetype, data.memory,
+                          1, *data.shape).orig_to_cvmat
       else
         data.orig_to_cvmat
       end

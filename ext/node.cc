@@ -86,8 +86,8 @@ VALUE Node::wrapToCvMat( VALUE rbSelf )
                   "Conversion to CvMat only supports UBYTE, BYTE, USINT, "
                   "SINT, INT, SFLOAT, DFLOAT as basic types" );
     };
-    VALUE rbTypeSize = rb_funcall( rbSelf, rb_intern( "storage_size" ), 0 );
-    int typesize = NUM2INT( rbTypeSize );
+    VALUE rbTypeSize = rb_funcall(rbTypecode, rb_intern("storage_size"), 0);
+    int typesize = NUM2INT(rbTypeSize) * width * height * channels;
     VALUE cMalloc = rb_define_class_under( mModule, "Malloc", rb_cObject );
     unsigned char *source;
     dataGetStruct( rbMalloc, cMalloc, unsigned char, source );

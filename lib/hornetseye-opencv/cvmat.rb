@@ -25,11 +25,9 @@ module OpenCV
       when 1
         retval.roll[ 0 ]
       when 2
-        Hornetseye::MultiArray( Hornetseye::COMPLEX( retval.typecode ),
-                                width, height ).new retval.memory
+        MultiArray.import Hornetseye::COMPLEX(retval.typecode), retval.memory, width, height
       when 3
-        Hornetseye::MultiArray( Hornetseye::RGB( retval.typecode ),
-                                width, height ).new retval.memory
+        MultiArray.import Hornetseye::RGB(retval.typecode), retval.memory, width, height
       else
         retval
       end
