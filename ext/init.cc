@@ -31,8 +31,8 @@ extern "C" {
 
   void Init_hornetseye_opencv(void)
   {
-    rb_require( "opencv" );
-    rb_require( "multiarray" );
+    rb_require("opencv");
+    rb_require("multiarray");
     VALUE mOpenCV = rb_define_module( "OpenCV" );
     VALUE mHornetseye = rb_define_module( "Hornetseye" );
     CvMatExt::registerRubyClass( mOpenCV );
