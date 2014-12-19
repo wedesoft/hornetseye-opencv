@@ -7,7 +7,7 @@ require 'rake/loaders/makefile'
 require 'rbconfig'
 
 PKG_NAME = 'hornetseye-opencv'
-PKG_VERSION = '0.3.2'
+PKG_VERSION = '0.3.3'
 CFG = RbConfig::CONFIG
 CXX = ENV[ 'CXX' ] || 'g++'
 RB_FILES = FileList[ 'lib/**/*.rb' ]
@@ -47,7 +47,7 @@ desc 'Compile Ruby extension (default)'
 task :all => [ SO_FILE ]
 
 file SO_FILE => OBJ do |t|
-   sh "#{CXX} -shared -o #{t.name} #{OBJ} -lcv -lhighgui -lcvaux -lcxcore -lml #{$LIBRUBYARG}"
+   sh "#{CXX} -shared -o #{t.name} #{OBJ} -lopencv_core #{$LIBRUBYARG}"
 end
 
 task :test => [ SO_FILE ]
@@ -117,7 +117,7 @@ begin
     s.rdoc_options = %w{--no-private}
     s.add_dependency %<malloc>, [ '~> 1.1' ]
     s.add_dependency %<multiarray>, [ '~> 1.0' ]
-    s.add_dependency %<opencv>, [ '~> 0.0' ]
+    s.add_dependency %<ruby-opencv>, [ '~> 0.0' ]
     s.add_development_dependency %q{rake}
   end
   GEM_SOURCE = "#{PKG_NAME}-#{PKG_VERSION}.gem"
@@ -141,7 +141,7 @@ begin
     s.rdoc_options = %w{--no-private}
     s.add_dependency %<malloc>, [ '~> 1.1' ]
     s.add_dependency %<multiarray>, [ '~> 1.0' ]
-    s.add_dependency %<opencv>, [ '~> 0.0' ]
+    s.add_dependency %<ruby-opencv>, [ '~> 0.0' ]
   end
   GEM_BINARY = "#{PKG_NAME}-#{PKG_VERSION}-#{$BINSPEC.platform}.gem"
   desc "Build the gem file #{GEM_SOURCE}"
