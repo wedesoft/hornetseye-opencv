@@ -49,9 +49,9 @@ VALUE Node::wrapToCvMat( VALUE rbSelf )
                 "Array needs to have three dimensions for conversion to "
                 "CvMat (but had " << rank << " dimension(s))" );
     int
-      channels = NUM2INT( RARRAY_PTR(rbShape)[0] ),
-      width = NUM2INT( RARRAY_PTR(rbShape)[1] ),
-      height = NUM2INT( RARRAY_PTR(rbShape)[2] );
+      channels = NUM2INT( rb_ary_entry(rbShape, 0) ),
+      width = NUM2INT( rb_ary_entry(rbShape, 1) ),
+      height = NUM2INT( rb_ary_entry(rbShape, 2) );
     int type = -1;
     if ( rb_funcall( rbTypecode, rb_intern( "==" ), 1,
                      rb_const_get( mModule, rb_intern( "UBYTE" ) ) ) ==
