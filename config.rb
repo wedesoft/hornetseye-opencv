@@ -19,4 +19,4 @@ DESCRIPTION = %q{This Ruby extension provides conversions from Hornetseye::Multi
 LICENSE = 'GPL-3+'
 AUTHOR = %q{Jan Wedekind}
 EMAIL = %q{jan@wedesoft.de}
-HOMEPAGE = %q{http://wedesoft.github.com/hornetseye-opencv/}
+HOMEPAGE = %q{http://wedesoft.github.io/hornetseye-opencv/}
